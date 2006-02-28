@@ -17,11 +17,14 @@ $Id$
 """
 
 try:
-    from setuptools import setup, Extension
+    from setuptools import setup, Extension, find_packages
+    packages = find_packages('src', exclude=['zope.testing'])
+    
 except ImportException, e:
     from distutils.core import setup, Extension
+    packages = ['zope', 'zope.deprecation']
     
-setup(name='zope.deprecation',
+setup(name='zope_deprecation',
       version='3.0',
 
       url='http://svn.zope.org/zope.deprecation',
@@ -30,8 +33,9 @@ setup(name='zope.deprecation',
       author='Zope Corporation and Contributors',
       author_email='zope3-dev@zope.org',
       
-      packages=["zope", "zope.deprecation"],
+      packages=packages,
       package_dir = {'': 'src'},
+      namespace_packages=['zope',],
 
       tests_require = ['zope_testing'],
       include_package_data = True,
