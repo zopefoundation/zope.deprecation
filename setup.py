@@ -20,7 +20,7 @@ try:
     from setuptools import setup, Extension, find_packages
     packages = find_packages('src', exclude=['zope.testing'])
     
-except ImportException, e:
+except ImportError, e:
     from distutils.core import setup, Extension
     packages = ['zope', 'zope.deprecation']
     
