@@ -16,15 +16,15 @@
 $Id$
 """
 
+import os
+
 try:
     from setuptools import setup, Extension, find_packages
-    packages = find_packages('src', exclude=['zope.testing'])
     
 except ImportError, e:
     from distutils.core import setup, Extension
-    packages = ['zope', 'zope.deprecation']
     
-setup(name='zope_deprecation',
+setup(name='zope.deprecation',
       version='3.0',
 
       url='http://svn.zope.org/zope.deprecation',
@@ -33,11 +33,11 @@ setup(name='zope_deprecation',
       author='Zope Corporation and Contributors',
       author_email='zope3-dev@zope.org',
       
-      packages=packages,
-      package_dir = {'': 'src'},
+      package_dir = {'': os.path.join(os.path.dirname(__file__), 'src')},
+      packages=['zope', 'zope.deprecation'],
       namespace_packages=['zope',],
 
-      tests_require = ['zope_testing'],
+      tests_require = ['zope.testing'],
       include_package_data = True,
       zip_safe = False,
       )
