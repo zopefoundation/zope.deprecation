@@ -24,7 +24,7 @@ try:
 except ImportError, e:
     from distutils.core import setup, Extension
     
-setup(name='zope_deprecation',
+setup(name='zope.deprecation',
       version='3.0',
 
       url='http://svn.zope.org/zope.deprecation',
