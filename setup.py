@@ -18,14 +18,10 @@ $Id$
 
 import os
 
-try:
-    from setuptools import setup, Extension, find_packages
-    
-except ImportError, e:
-    from distutils.core import setup, Extension
-    
+from setuptools import setup, find_packages
+
 setup(name='zope.deprecation',
-      version='3.3-dev',
+      version='3.3dev',
 
       url='http://svn.zope.org/zope.deprecation',
       license='ZPL 2.1',
@@ -38,7 +34,7 @@ setup(name='zope.deprecation',
                        "future releases.",
       
       package_dir = {'': 'src'},
-      packages=['zope', 'zope.deprecation'],
+      packages=find_packages('src'),
       namespace_packages=['zope',],
 
       tests_require = ['zope.testing'],
