@@ -45,7 +45,6 @@ setup(
       packages=find_packages('src'),
       namespace_packages=['zope',],
       install_requires = 'setuptools',
-
       extras_require = dict(test=['zope.testing']),
       include_package_data = True,
       zip_safe = False,
