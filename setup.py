@@ -35,7 +35,7 @@ setup(
         'Detailed Documentation\n'
         '**********************\n'
         + '\n' +
-        read('src', 'zope', 'README.txt')
+        read('src', 'zope', 'deprecation', 'README.txt')
         + '\n' +
         'Download\n'
         '**********************\n'
