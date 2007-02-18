@@ -12,32 +12,41 @@
 #
 ##############################################################################
 """Setup for zope.deprecation package
-
-$Id$
 """
 
 import os
-
 from setuptools import setup, find_packages
 
-setup(name='zope.deprecation',
-      version='3.3dev',
+def read(*rnames):
+    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-      url='http://svn.zope.org/zope.deprecation',
-      license='ZPL 2.1',
-      description='Zope 3 Deprecation Infrastructure',
-      author='Zope Corporation and Contributors',
-      author_email='zope3-dev@zope.org',
-      long_description="This package provides a simple function called "
-                       "'deprecated(names, reason)', which Zope3 uses to "
-                       "mark APIs and components which will be removed in "
-                       "future releases.",
+name = 'zope.deprecation'
+setup(
+    name=name,
+    version='3.3.0',
+    url='http://www.python.org/pypi/'+name,
+    license='ZPL 2.1',
+    description='Zope 3 Deprecation Infrastructure',
+    author='Zope Corporation and Contributors',
+    author_email='zope3-dev@zope.org',
+    long_description=(
+        read('README.txt')
+        + '\n' +
+        'Detailed Documentation\n'
+        '**********************\n'
+        + '\n' +
+        read('src', 'zope', 'README.txt')
+        + '\n' +
+        'Download\n'
+        '**********************\n'
+        ),
       
       package_dir = {'': 'src'},
       packages=find_packages('src'),
       namespace_packages=['zope',],
+      install_requires = 'setuptools',
 
-      tests_require = ['zope.testing'],
+      extras_require = dict(test=['zope.testing']),
       include_package_data = True,
       zip_safe = False,
       )
