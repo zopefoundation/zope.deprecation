@@ -25,7 +25,7 @@ def read(*rnames):
 name = 'zope.deprecation'
 setup(
     name=name,
-    version = '3.4.1',
+    version = '3.4.1dev',
     url='http://www.python.org/pypi/'+name,
     license='ZPL 2.1',
     description='Zope 3 Deprecation Infrastructure',
@@ -42,7 +42,7 @@ setup(
         'Download\n'
         '**********************\n'
         ),
-      
+
       package_dir = {'': 'src'},
       packages=find_packages('src'),
       namespace_packages=['zope',],

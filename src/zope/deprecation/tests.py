@@ -43,12 +43,15 @@ def deprecatedemo4():
     """Demonstrate that deprecate() also works in a local scope."""
     deprecated('demo4', 'demo4 is no more.')
 
-def warn(message, type_, stacklevel):
+def warn(message, category=None, stacklevel=1):
     print "From tests.py's showwarning():"
-    
+
     frame = sys._getframe(stacklevel)
     path = frame.f_globals['__file__']
     file = open(path)
+    if path.endswith('.pyc') or path.endswith('.pyo'):
+        path = path[:-1]
+
     lineno = frame.f_lineno
     for i in range(lineno):
         line = file.readline()
@@ -56,7 +59,7 @@ def warn(message, type_, stacklevel):
     print "%s:%s: %s: %s\n  %s" % (
         path,
         frame.f_lineno,
-        type_.__name__,
+        category.__name__,
         message,
         line.strip(),
         )
