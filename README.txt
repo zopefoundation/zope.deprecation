@@ -15,6 +15,8 @@ Releases
 3.4.1 (unreleased)
 ==================
 
+Added support to bootstrap on Jython.
+
 Fix zope.deprecation.warn() to make the signature identical to
 warnings.warn() and to check for *.pyc and *.pyo files.
 
