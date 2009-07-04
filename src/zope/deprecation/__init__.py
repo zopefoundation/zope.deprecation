@@ -17,11 +17,8 @@ $Id$
 """
 __docformat__ = "reStructuredText"
 
-from zope.deprecation.deprecation import deprecated, deprecate, ShowSwitch
+from zope.deprecation.deprecation import deprecated
+from zope.deprecation.deprecation import deprecate
 from zope.deprecation.deprecation import moved
-
-# This attribute can be used to temporarly deactivate deprecation
-# warnings, so that backward-compatibility code can import other
-# backward-compatiblity components without warnings being produced.
-
-__show__ = ShowSwitch()
+from zope.deprecation.deprecation import ShowSwitch
+from zope.deprecation.deprecation import __show__

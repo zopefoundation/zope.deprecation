@@ -5,6 +5,9 @@ Releases
 3.4.1 (unreleased)
 ==================
 
+Removed import cycle for ``__show__`` by defining it in the
+``zope.deprecation.deprecation`` module.
+
 Added support to bootstrap on Jython.
 
 Fix zope.deprecation.warn() to make the signature identical to

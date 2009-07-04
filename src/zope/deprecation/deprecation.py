@@ -23,9 +23,6 @@ import sys
 import types
 import warnings
 
-import zope.deprecation
-
-
 class ShowSwitch(object):
     """Simple stack-based switch."""
 
@@ -47,6 +44,11 @@ class ShowSwitch(object):
     def __repr__(self):
         return '<ShowSwitch %s>' %(self() and 'on' or 'off')
 
+
+# This attribute can be used to temporarly deactivate deprecation
+# warnings, so that backward-compatibility code can import other
+# backward-compatiblity components without warnings being produced.
+__show__ = ShowSwitch()
 
 ogetattr = object.__getattribute__
 class DeprecationProxy(object):
@@ -70,7 +72,7 @@ class DeprecationProxy(object):
             return types.ModuleType
         
         if name in ogetattr(self, '_DeprecationProxy__deprecated'):
-            if zope.deprecation.__show__():
+            if __show__():
                 warnings.warn(
                     name + ': ' + self.__deprecated[name],
                     DeprecationWarning, 2)
@@ -103,7 +105,7 @@ class DeprecatedModule(object):
         if name == '__class__':
             return types.ModuleType
         
-        if zope.deprecation.__show__():
+        if __show__():
             warnings.warn(self.__msg, DeprecationWarning, 2)
 
         return getattr(ogetattr(self, '_DeprecatedModule__original_module'),
@@ -126,28 +128,28 @@ class DeprecatedGetProperty(object):
         self.prop = prop
 
     def __get__(self, inst, klass):
-        if zope.deprecation.__show__():
+        if __show__():
             warnings.warn(self.message, DeprecationWarning, 2)
         return self.prop.__get__(inst, klass)
 
 class DeprecatedGetSetProperty(DeprecatedGetProperty):
 
     def __set__(self, inst, prop):
-        if zope.deprecation.__show__():
+        if __show__():
             warnings.warn(self.message, DeprecationWarning, 2)
         self.prop.__set__(inst, prop)
 
 class DeprecatedGetSetDeleteProperty(DeprecatedGetSetProperty):
 
     def __delete__(self, inst):
-        if zope.deprecation.__show__():
+        if __show__():
             warnings.warn(self.message, DeprecationWarning, 2)
         self.prop.__delete__(inst)
 
 def DeprecatedMethod(method, message):
 
     def deprecated_method(self, *args, **kw):
-        if zope.deprecation.__show__():
+        if __show__():
             warnings.warn(message, DeprecationWarning, 2)
         return method(self, *args, **kw)
 
