@@ -2,18 +2,12 @@
 Deprecation API
 ===============
 
-When we started working on Zope 3.1, we noticed that the hardest part of the
-development process was to ensure backward-compatibility and correctly mark
-deprecated modules, classes, functions, methods and properties. This module
-provides a simple function called `deprecated(names, reason)` to deprecate the
-previously mentioned Python objects.
-
 Deprecating objects inside a module
 -----------------------------------
 
 Let's start with a demonstration of deprecating any name inside a module. To
 demonstrate the functionality, I have placed the following code inside the
-`tests.py` file of this package:
+``tests.py`` file of this package::
 
   from zope.deprecation import deprecated
   demo1 = 1
@@ -25,7 +19,7 @@ demonstrate the functionality, I have placed the following code inside the
   demo3 = 3
   deprecated('demo3', 'demo3 is no more.')
 
-The first argument to the `deprecated()` function is a list of names that
+The first argument to the ``deprecated()`` function is a list of names that
 should be declared deprecated. If the first argument is a string, it is
 interpreted as one name. The second argument is the reason the particular name
 has been deprecated. It is good practice to also list the version in which the
@@ -292,8 +286,9 @@ Temporarily turning off deprecation warnings
 --------------------------------------------
 
 In some cases it is desireable to turn off the deprecation warnings for a
-short time. To support such a feature, the `zope.deprecation` package provides
-an attribute called `__show__`. One can ask for its status by calling it:
+short time. To support such a feature, the ``zope.deprecation`` package
+provides an attribute called ``__show__``. One can ask for its status by
+calling it:
 
   >>> from zope.deprecation import __show__
   >>> __show__()
@@ -321,7 +316,7 @@ You can turn off the depraction warnings using
   >>> foo.blah
   1
 
-Now, you can also nest several turn-offs, so that calling `off()` multiple
+Now, you can also nest several turn-offs, so that calling ``off()`` multiple
 times is meaningful:
 
   >>> __show__.stack
@@ -343,7 +338,7 @@ times is meaningful:
   >>> __show__()
   True
 
-You can also reset `__show__` to `True`:
+You can also reset ``__show__`` to ``True``:
 
   >>> __show__.off()
   >>> __show__.off()
@@ -354,7 +349,7 @@ You can also reset `__show__` to `True`:
   >>> __show__()
   True
 
-Finally, you cannot call `on()` without having called `off()` before:
+Finally, you cannot call ``on()`` without having called ``off()`` before:
 
   >>> __show__.on()
   Traceback (most recent call last):

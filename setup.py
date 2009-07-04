@@ -34,15 +34,12 @@ setup(
     long_description=(
         read('README.txt')
         + '\n' +
-        read('CHANGES.txt')
-        + '\n' + 
-        'Detailed Documentation\n'
-        '**********************\n'
-        + '\n' +
         read('src', 'zope', 'deprecation', 'README.txt')
         + '\n' +
+        read('CHANGES.txt')
+        + '\n' +
         'Download\n'
-        '**********************\n'
+        '########\n'
         ),
 
       package_dir = {'': 'src'},
