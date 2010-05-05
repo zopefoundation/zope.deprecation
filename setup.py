@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2006 Zope Corporation and Contributors.
+# Copyright (c) 2006 Zope Foundation and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -34,7 +34,7 @@ setup(
     url='http://www.python.org/pypi/'+name,
     license='ZPL 2.1',
     description='Zope 3 Deprecation Infrastructure',
-    author='Zope Corporation and Contributors',
+    author='Zope Foundation and Contributors',
     author_email='zope3-dev@zope.org',
     long_description=(
         read('README.txt')
