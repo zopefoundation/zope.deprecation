@@ -35,7 +35,7 @@ setup(
     license='ZPL 2.1',
     description='Zope 3 Deprecation Infrastructure',
     author='Zope Foundation and Contributors',
-    author_email='zope3-dev@zope.org',
+    author_email='zope-dev@zope.org',
     long_description=(
         read('README.txt')
         + '\n' +
