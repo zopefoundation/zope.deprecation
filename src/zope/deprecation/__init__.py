@@ -11,9 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Deprecation Package
-
-$Id$
+"""Deprecation of modules / APIs.
 """
 __docformat__ = "reStructuredText"
 

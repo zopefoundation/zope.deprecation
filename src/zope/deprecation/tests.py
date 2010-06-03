@@ -11,9 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Component Architecture Tests
-
-$Id$
+"""Tests for zope.deprecation
 """
 
 from zope.testing import doctest

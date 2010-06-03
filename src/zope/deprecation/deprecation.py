@@ -15,8 +15,6 @@
 
 This module provides utilities to ease the development of backward-compatible
 code.
-
-$Id$
 """
 __docformat__ = "reStructuredText"
 import sys
