@@ -14,7 +14,7 @@
 """Tests for zope.deprecation
 """
 
-from zope.testing import doctest
+import doctest
 from zope.testing import renormalizing
 import os
 import re
