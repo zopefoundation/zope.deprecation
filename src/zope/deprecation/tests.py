@@ -103,12 +103,14 @@ def test_suite():
     checker = renormalizing.RENormalizing([
         (re.compile('\\\\'), '/'),   # convert Windows paths to Unix paths
         ])
+    testfile = os.path.join(os.path.dirname(__file__), 'README.txt')
 
     return unittest.TestSuite((
         doctest.DocFileSuite('README.txt',
                              setUp=setUp, tearDown=tearDown,
                              optionflags=doctest.ELLIPSIS,
                              checker=checker,
+                             globs={'__file__': testfile}, # py2.4 compat
                              ),
         ))
 
