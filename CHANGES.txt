@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-3.4.1 (unreleased)
+3.4.1 (2011-06-07)
 ------------------
 
 - Removed import cycle for ``__show__`` by defining it in the

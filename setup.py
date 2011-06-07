@@ -25,11 +25,10 @@ from setuptools import setup, find_packages
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-name = 'zope.deprecation'
 setup(
-    name=name,
-    version = '3.4.1dev',
-    url='http://www.python.org/pypi/'+name,
+    name='zope.deprecation',
+    version='3.4.1',
+    url='http://pypi.python.org/pypi/zope.deprecation',
     license='ZPL 2.1',
     description='Zope Deprecation Infrastructure',
     author='Zope Corporation and Contributors',
