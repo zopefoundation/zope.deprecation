@@ -31,25 +31,23 @@ setup(
     version = '3.4.1dev',
     url='http://www.python.org/pypi/'+name,
     license='ZPL 2.1',
-    description='Zope 3 Deprecation Infrastructure',
-    author='Zope Foundation and Contributors',
+    description='Zope Deprecation Infrastructure',
+    author='Zope Corporation and Contributors',
     author_email='zope-dev@zope.org',
     long_description=(
         read('README.txt')
-        + '\n' +
+        + '\n\n' +
+        '.. contents::\n'
+        + '\n\n' +
         read('src', 'zope', 'deprecation', 'README.txt')
-        + '\n' +
+        + '\n\n' +
         read('CHANGES.txt')
-        + '\n' +
-        'Download\n'
-        '########\n'
         ),
-
-      package_dir = {'': 'src'},
-      packages=find_packages('src'),
-      namespace_packages=['zope',],
-      install_requires = 'setuptools',
-      extras_require = dict(test=['zope.testing']),
-      include_package_data = True,
-      zip_safe = False,
-      )
+    package_dir = {'': 'src'},
+    packages=find_packages('src'),
+    namespace_packages=['zope',],
+    install_requires = 'setuptools',
+    extras_require = dict(test=['zope.testing']),
+    include_package_data = True,
+    zip_safe = False,
+    )

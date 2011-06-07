@@ -1,56 +1,27 @@
-``zope.deprecation`` Changelog
-##############################
+=======
+CHANGES
+=======
 
-
-==================
 3.4.1 (unreleased)
-==================
+------------------
 
-Removed import cycle for ``__show__`` by defining it in the
-``zope.deprecation.deprecation`` module.
+- Removed import cycle for ``__show__`` by defining it in the
+  ``zope.deprecation.deprecation`` module.
 
-Added support to bootstrap on Jython.
+- Added support to bootstrap on Jython.
 
-Fix ``zope.deprecation.warn()`` to make the signature identical to
-``warnings.warn()`` and to check for .pyc and .pyo files.
-
-
-==================
-3.4.0 (2007/07/19)
-==================
-
-Release 3.4 final, corresponding to Zope 3.4.
+- Fix ``zope.deprecation.warn()`` to make the signature identical to
+  ``warnings.warn()`` and to check for .pyc and .pyo files.
 
 
-==================
-3.3.0 (2007/02/18)
-==================
+3.4.0 (2007-07-19)
+------------------
 
-Corresponds to the verison of the ``zope.deprecation`` package shipped as
-part of the Zope 3.3.0 release.
+- Release 3.4 final, corresponding to Zope 3.4.
 
 
-====================
-3.2.0.2 (2006/04/15)
-====================
+3.3.0 (2007-02-18)
+------------------
 
-Fix packaging bug:  ``package_dir`` must be a *relative* path.
-
-
-==================
-3.2.0 (2006/01/05)
-==================
-
-Corresponds to the verison of the ``zope.deprecation`` package shipped as part
-of the Zope 3.2.0 release.
-
-Refactored to eliminate dependency on ``zope.proxy``. This was an especially
-bad dependency due to the required C exension in ``zope.proxy``.
-
-
-==================
-3.1.0 (2005/10/03)
-==================
-
-Corresponds to the verison of the ``zope.deprecation`` package shipped as
-part of the Zope 3.1.0 release.
+- Corresponds to the version of the ``zope.deprecation`` package shipped as
+  part of the Zope 3.3.0 release.
