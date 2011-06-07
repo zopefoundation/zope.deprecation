@@ -207,7 +207,6 @@ def moved(to_location, unsupported_in=None):
     fromdict = sys.modules[to_location].__dict__
     tomod = sys.modules[old]
     tomod.__doc__ = message
-    todict = tomod.__dict__
 
     for name, v in fromdict.iteritems():
         if name not in tomod.__dict__:
