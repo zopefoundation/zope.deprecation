@@ -2,10 +2,12 @@
 CHANGES
 =======
 
-3.4.2 (unreleased)
-------------------
+3.5 (unreleased)
+----------------
 
-- Nothing changed yet.
+- Replaced doctesting with unit testing.
+
+- Python 3 compatibility.
 
 
 3.4.1 (2011-06-07)

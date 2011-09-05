@@ -21,6 +21,13 @@ import sys
 import types
 import warnings
 
+PY3 = sys.version_info[0] == 3
+
+if PY3:
+    str_and_sequence_types = (str, list, tuple)
+else:
+    str_and_sequence_types = (basestring, list, tuple)
+
 class ShowSwitch(object):
     """Simple stack-based switch."""
 
@@ -153,14 +160,13 @@ def DeprecatedMethod(method, message):
 
     return deprecated_method
 
-
 def deprecated(specifier, message):
     """Deprecate the given names."""
 
     # A string specifier (or list of strings) means we're called
     # top-level in a module and are to deprecate things inside this
     # module
-    if isinstance(specifier, (str, unicode, list, tuple)):
+    if isinstance(specifier, str_and_sequence_types):
         globals = sys._getframe(1).f_globals
         modname = globals['__name__']
 
@@ -208,7 +214,7 @@ def moved(to_location, unsupported_in=None):
     tomod = sys.modules[old]
     tomod.__doc__ = message
 
-    for name, v in fromdict.iteritems():
+    for name, v in fromdict.items():
         if name not in tomod.__dict__:
             setattr(tomod, name, v)
 
