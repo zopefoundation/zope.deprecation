@@ -2,8 +2,8 @@
 CHANGES
 =======
 
-3.5 (unreleased)
-----------------
+3.5.0 (2011-09-05)
+------------------
 
 - Replaced doctesting with unit testing.
 
