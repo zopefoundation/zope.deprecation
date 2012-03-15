@@ -2,8 +2,8 @@
 CHANGES
 =======
 
-3.5.1dev (unreleased)
----------------------
+3.5.1 (2012-03-15)
+------------------
 
 - Revert a move of `README.txt` to unbreak ``zope.app.apidoc``.
 
