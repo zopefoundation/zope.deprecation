@@ -36,6 +36,10 @@ setup(
     long_description=(
         read('README.txt')
         + '\n\n' +
+        '.. contents::\n'
+        + '\n\n' +
+        read('src', 'zope', 'deprecation', 'README.txt')
+        + '\n\n' +
         read('CHANGES.txt')
         ),
     classifiers=[
