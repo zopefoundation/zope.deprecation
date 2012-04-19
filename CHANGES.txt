@@ -5,6 +5,9 @@ CHANGES
 4.0.0 (unreleased)
 ------------------
 
+- Added Sphinx documentation (API docs moved from package-data README
+  into ``docs/api.rst``).
+
 - Updated support for continuous integration using ``tox`` and ``jenkins``.
 
 - 100% unit test coverage.
