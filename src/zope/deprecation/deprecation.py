@@ -23,9 +23,9 @@ import warnings
 
 PY3 = sys.version_info[0] == 3
 
-if PY3:
+if PY3: #pragma NO COVER
     str_and_sequence_types = (str, list, tuple)
-else:
+else: #pragma NO COVER
     str_and_sequence_types = (basestring, list, tuple)
 
 class ShowSwitch(object):
