@@ -5,6 +5,8 @@ CHANGES
 4.0.0 (unreleased)
 ------------------
 
+- Updated support for continuous integration using ``tox`` and ``jenkins``.
+
 - 100% unit test coverage.
 
 - Added ``setup.py dev`` alias (runs ``setup.py develop`` plus installs
