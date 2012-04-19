@@ -27,7 +27,7 @@ def read(*rnames):
 
 setup(
     name='zope.deprecation',
-    version='3.5.2dev',
+    version='4.0.0dev',
     url='http://pypi.python.org/pypi/zope.deprecation',
     license='ZPL 2.1',
     description='Zope Deprecation Infrastructure',
@@ -45,13 +45,15 @@ setup(
     classifiers=[
         "Intended Audience :: Developers",
         "Programming Language :: Python",
+        "Programming Language :: Python :: 2.6",
+        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.2",
         ],
     package_dir = {'': 'src'},
     packages=find_packages('src'),
     namespace_packages=['zope',],
     install_requires = 'setuptools',
-    extras_require = dict(test=['zope.testing']),
     include_package_data = True,
     zip_safe = False,
     test_suite='zope.deprecation',
