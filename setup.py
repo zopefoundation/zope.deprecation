@@ -22,6 +22,7 @@
 import os
 from setuptools import setup, find_packages
 
+
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
@@ -57,4 +58,8 @@ setup(
     include_package_data = True,
     zip_safe = False,
     test_suite='zope.deprecation',
-    )
+    extras_require={
+        'docs': ['Sphinx'],
+        'testing': ['nose', 'coverage'],
+    },
+)
