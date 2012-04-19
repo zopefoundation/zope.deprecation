@@ -5,20 +5,39 @@ Deprecating objects inside a module
 -----------------------------------
 
 Let's start with a demonstration of deprecating any name inside a module. To
-demonstrate the functionality, I have placed the following code inside the
-``fixture.py`` file of this package:
+demonstrate the functionality, First, let's set up an example module containing
+fixtures we will use:
 
-.. code-block:: python
+.. doctest::
 
-  from zope.deprecation import deprecated
-  demo1 = 1
-  deprecated('demo1', 'demo1 is no more.')
-
-  demo2 = 2
-  deprecated('demo2', 'demo2 is no more.')
-
-  demo3 = 3
-  deprecated('demo3', 'demo3 is no more.')
+   >>> import os
+   >>> import tempfile
+   >>> import zope.deprecation
+   >>> tmp_d = tempfile.mkdtemp('deprecation')
+   >>> zope.deprecation.__path__.append(tmp_d)
+   >>> doctest_ex = '''\
+   ... from . import deprecated
+   ... 
+   ... def demo1(): #pragma NO COVER  (used only in doctests)
+   ...     return 1
+   ... deprecated('demo1', 'demo1 is no more.')
+   ... 
+   ... def demo2(): #pragma NO COVER  (used only in doctests)
+   ...     return 2
+   ... deprecated('demo2', 'demo2 is no more.')
+   ... 
+   ... def demo3(): #pragma NO COVER  (used only in doctests)
+   ...     return 3
+   ... deprecated('demo3', 'demo3 is no more.')
+   ... 
+   ... def demo4(): #pragma NO COVER  (used only in doctests)
+   ...     return 4
+   ... def deprecatedemo4(): #pragma NO COVER  (used only in doctests)
+   ...     """Demonstrate that deprecated() also works in a local scope."""
+   ...     deprecated('demo4', 'demo4 is no more.')
+   ... '''
+   >>> with open(os.path.join(tmp_d, 'doctest_ex.py'), 'w') as f:
+   ...     f.write(doctest_ex)
 
 The first argument to the ``deprecated()`` function is a list of names that
 should be declared deprecated. If the first argument is a string, it is
@@ -31,20 +50,20 @@ Let's now see how the deprecation warnings are displayed.
 .. doctest::
 
    >>> import warnings
-   >>> from zope.deprecation import fixture
+   >>> from zope.deprecation import doctest_ex
    >>> with warnings.catch_warnings(record=True) as log:
    ...     del warnings.filters[:]
-   ...     fixture.demo1()
+   ...     doctest_ex.demo1()
    1
    >>> print log[0].category.__name__
    DeprecationWarning
    >>> print log[0].message
    demo1: demo1 is no more.
 
-   >>> import zope.deprecation.fixture
+   >>> import zope.deprecation.doctest_ex
    >>> with warnings.catch_warnings(record=True) as log:
    ...     del warnings.filters[:]
-   ...     zope.deprecation.fixture.demo2()
+   ...     zope.deprecation.doctest_ex.demo2()
    2
    >>> print log[0].message
    demo2: demo2 is no more.
@@ -58,7 +77,7 @@ name directly, the deprecation warning will be raised immediately.
 
    >>> with warnings.catch_warnings(record=True) as log:
    ...     del warnings.filters[:]
-   ...     from zope.deprecation.fixture import demo3
+   ...     from zope.deprecation.doctest_ex import demo3
    >>> print log[0].message
    demo3: demo3 is no more.
 
@@ -71,14 +90,14 @@ the next access:
 
    >>> with warnings.catch_warnings(record=True) as log:
    ...     del warnings.filters[:]
-   ...     fixture.demo4()
+   ...     doctest_ex.demo4()
    4
    >>> len(log)
    0
-   >>> fixture.deprecatedemo4()
+   >>> doctest_ex.deprecatedemo4()
    >>> with warnings.catch_warnings(record=True) as log:
    ...     del warnings.filters[:]
-   ...     fixture.demo4()
+   ...     doctest_ex.demo4()
    4
    >>> print log[0].message.message #XXX oddball case: why nested?
    demo4: demo4 is no more.
@@ -160,7 +179,6 @@ we'd like to retain backward compatibility:
 
 .. doctest::
 
-   >>> import zope.deprecation
    >>> import sys
    >>> sys.modules['zope.wanda'] = deprecation.deprecated(
    ...     zope.deprecation, 'A module called Wanda is now zope.deprecation.')
@@ -200,9 +218,6 @@ module on the new location should be used:
 .. doctest::
 
    >>> import os
-   >>> import tempfile
-   >>> tmp_d = tempfile.mkdtemp('deprecation')
-   >>> zope.deprecation.__path__.append(tmp_d)
    >>> created_modules = []
    >>> def create_module(modules=(), **kw): #** highlightfail
    ...     modules = dict(modules)
