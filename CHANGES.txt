@@ -4,6 +4,8 @@
 4.0.0 (unreleased)
 ------------------
 
+- Automated build of Sphinx HTML docs and running doctest snippets via tox.
+
 - Added Sphinx documentation:
 
   - API docs moved from package-data README into ``docs/api.rst``.
