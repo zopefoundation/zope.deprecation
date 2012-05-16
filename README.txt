@@ -1,7 +1,8 @@
-``zope.deprecation``
-====================
+``zope.deprecation`` README
+===========================
 
 This package provides a simple function called ``deprecated(names, reason)``
 to mark deprecated modules, classes, functions, methods and properties.
 
-.. See docs/api.rst
+Please see http://docs.zope.org/zope.deprecation/ for the documentation.
+
