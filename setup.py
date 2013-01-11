@@ -35,9 +35,9 @@ setup(
     author='Zope Corporation and Contributors',
     author_email='zope-dev@zope.org',
     long_description=(
-        read('README.txt')
+        read('README.rst')
         + '\n\n' +
-        read('CHANGES.txt')
+        read('CHANGES.rst')
         ),
     classifiers=[
         "Intended Audience :: Developers",
