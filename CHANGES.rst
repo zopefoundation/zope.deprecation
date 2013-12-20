@@ -1,7 +1,7 @@
 ``zope.deprecation`` Changelog
 ==============================
 
-4.1.0 (unreleased)
+4.1.0 (2013-12-20)
 ------------------
 
 - Added a ``Suppressor`` context manager, allowing scoped suppression of
