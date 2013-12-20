@@ -20,3 +20,4 @@ from zope.deprecation.deprecation import deprecate
 from zope.deprecation.deprecation import moved
 from zope.deprecation.deprecation import ShowSwitch
 from zope.deprecation.deprecation import __show__
+from zope.deprecation.deprecation import Suppressor

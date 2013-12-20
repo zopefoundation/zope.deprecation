@@ -1,8 +1,11 @@
 ``zope.deprecation`` Changelog
 ==============================
 
-4.0.3 (unreleased)
+4.1.0 (unreleased)
 ------------------
+
+- Added a ``Suppressor`` context manager, allowing scoped suppression of
+  deprecation warnings.
 
 - Updated ``boostrap.py`` to version 2.2.
 

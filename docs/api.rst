@@ -373,9 +373,31 @@ Temporarily turning off deprecation warnings
 --------------------------------------------
 
 In some cases it is desireable to turn off the deprecation warnings for a
-short time. To support such a feature, the ``zope.deprecation`` package
-provides an attribute called ``__show__``. One can ask for its status by
-calling it:
+short time.
+
+To support such a feature, the ``zope.deprecation`` package
+provides a :term:`context manager` class, :class:`zope.deprecation.Suppressor`.
+Code running inside the scope of a ``Suppressor`` will not emit deprecation
+warnings.
+
+.. doctest::
+
+   >>> from zope.deprecation import Suppressor
+   >>> class Foo(object):
+   ...     bar = property(lambda self: 1)
+   ...     bar = deprecation.deprecated(bar, 'bar is no more.')
+   ...     blah = property(lambda self: 1)
+   ...     blah = deprecation.deprecated(blah, 'blah is no more.')
+   >>> foo = Foo()
+   >>> with Suppressor():
+   ...    foo.blah
+   1
+
+Note that no warning is emitted when ``foo.blah`` is accessed inside
+the suppressor's scope.:
+
+The suppressor is implemented in terms of a ``__show__`` object.
+One can ask for its status by calling it:
 
 .. doctest::
 
@@ -383,12 +405,15 @@ calling it:
    >>> __show__()
    True
 
-   >>> class Foo(object):
-   ...     bar = property(lambda self: 1)
-   ...     bar = deprecation.deprecated(bar, 'bar is no more.')
-   ...     blah = property(lambda self: 1)
-   ...     blah = deprecation.deprecated(blah, 'blah is no more.')
-   >>> foo = Foo()
+Inside a suppressor's scope, that status is always false:
+
+.. doctest::
+
+   >>> with Suppressor():
+   ...     __show__()
+   False
+
+.. doctest::
 
    >>> with warnings.catch_warnings(record=True) as log:
    ...     del warnings.filters[:]
@@ -397,7 +422,8 @@ calling it:
    >>> print log[0].message
    bar is no more.
 
-You can turn off the depraction warnings using
+If needed, your code can manage the depraction warnings manually using
+the ``on()`` and ``off()`` methods of the ``__show__`` object:
 
 .. doctest::
 

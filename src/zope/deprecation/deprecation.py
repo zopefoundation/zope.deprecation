@@ -55,6 +55,14 @@ class ShowSwitch(object):
 # backward-compatiblity components without warnings being produced.
 __show__ = ShowSwitch()
 
+class Suppressor(object):
+
+    def __enter__(self):
+        __show__.off()
+
+    def __exit__(self, *ignored):
+        __show__.on()
+
 ogetattr = object.__getattribute__
 class DeprecationProxy(object):
 

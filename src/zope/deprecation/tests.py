@@ -46,6 +46,18 @@ class TestShowSwitch(unittest.TestCase):
         from zope.deprecation import __show__
         self.assertEqual(self._makeOne().__class__, __show__.__class__)
 
+class TestSuppressor(unittest.TestCase):
+    def _makeOne(self):
+        from zope.deprecation import Suppressor
+        return Suppressor()
+
+    def test_it(self):
+        from zope.deprecation import __show__
+        self.assertEqual(__show__.stack, [])
+        with self._makeOne():
+            self.assertEqual(__show__.stack, [False])
+        self.assertEqual(__show__.stack, [])
+
 class WarningsSetupBase(object):
     def setUp(self):
         from zope.deprecation import deprecation
