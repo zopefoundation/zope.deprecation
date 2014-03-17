@@ -1,6 +1,11 @@
 ``zope.deprecation`` Changelog
 ==============================
 
+Unreleased
+----------
+
+- Added explicit support for Python 3.4.
+
 4.1.0 (2013-12-20)
 ------------------
 
