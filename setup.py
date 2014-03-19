@@ -28,7 +28,7 @@ def read(*rnames):
 
 setup(
     name='zope.deprecation',
-    version='4.1.1',
+    version='4.1.2dev',
     url='http://pypi.python.org/pypi/zope.deprecation',
     license='ZPL 2.1',
     description='Zope Deprecation Infrastructure',
