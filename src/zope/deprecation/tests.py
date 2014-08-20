@@ -366,7 +366,7 @@ class Test_deprecated(WarningsSetupBase, unittest.TestCase):
         result = self._callFUT(functionfixture, 'hello')
         self.assertNotEqual(result, functionfixture)
         self.assertEqual(self.warnings.w, [])
-        result(self)
+        result()
         self.assertEqual(
             self.warnings.w,
             [('hello', DeprecationWarning, 2)])
@@ -422,7 +422,7 @@ class Test_deprecate(WarningsSetupBase, unittest.TestCase):
     def test___call__(self):
         proxy = self._makeOne('hello')
         result = proxy(functionfixture)
-        self.assertEqual(result(self), None)
+        self.assertEqual(result(), None)
         self.assertEqual(
             self.warnings.w,
             [('hello', DeprecationWarning, 2)])
@@ -502,4 +502,4 @@ class ClassFixture(object): pass
 
 class ClassFixture2(object): pass
 
-def functionfixture(self): pass
+def functionfixture(): pass

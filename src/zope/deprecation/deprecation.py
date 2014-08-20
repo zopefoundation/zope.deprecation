@@ -161,10 +161,10 @@ class DeprecatedGetSetDeleteProperty(DeprecatedGetSetProperty):
 
 def DeprecatedMethod(method, message):
 
-    def deprecated_method(self, *args, **kw):
+    def deprecated_method(*args, **kw):
         if __show__():
             warnings.warn(message, DeprecationWarning, 2)
-        return method(self, *args, **kw)
+        return method(*args, **kw)
 
     return deprecated_method
 
