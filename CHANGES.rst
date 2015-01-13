@@ -4,7 +4,8 @@
 4.1.2 (unreleased)
 ------------------
 
-- TBD
+- Do not require a ``self`` parameter for deprecated functions.  See:
+  https://github.com/zopefoundation/zope.deprecation/pull/1
 
 4.1.1 (2014-03-19)
 ------------------
