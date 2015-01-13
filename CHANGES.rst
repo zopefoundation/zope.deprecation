@@ -1,7 +1,7 @@
 ``zope.deprecation`` Changelog
 ==============================
 
-4.1.2 (unreleased)
+4.1.2 (2015-01-13)
 ------------------
 
 - Do not require a ``self`` parameter for deprecated functions.  See:
