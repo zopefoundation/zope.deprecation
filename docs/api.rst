@@ -376,7 +376,7 @@ In some cases it is desireable to turn off the deprecation warnings for a
 short time.
 
 To support such a feature, the ``zope.deprecation`` package
-provides a :term:`context manager` class, :class:`zope.deprecation.Suppressor`.
+provides a context manager class, :class:`zope.deprecation.Suppressor`.
 Code running inside the scope of a ``Suppressor`` will not emit deprecation
 warnings.
 
