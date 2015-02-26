@@ -99,7 +99,7 @@ the next access:
    ...     del warnings.filters[:]
    ...     doctest_ex.demo4()
    4
-   >>> print log[0].message.message #XXX oddball case: why nested?
+   >>> print log[0].message
    demo4: demo4 is no more.
 
 
@@ -141,7 +141,7 @@ And here is the result:
    ...     del warnings.filters[:]
    ...     my.foo
    1
-   >>> print log[0].message.message # XXX see above
+   >>> print log[0].message
    foo is no more.
    >>> with warnings.catch_warnings(record=True) as log:
    ...     del warnings.filters[:]
@@ -153,7 +153,7 @@ And here is the result:
    ...     del warnings.filters[:]
    ...     my.blah()
    3
-   >>> print log[0].message.message # XXX see above
+   >>> print log[0].message
    blah() is no more.
    >>> with warnings.catch_warnings(record=True) as log:
    ...     del warnings.filters[:]
@@ -165,7 +165,7 @@ And here is the result:
    ...     del warnings.filters[:]
    ...     my.clap()
    5
-   >>> print log[0].message.message # XXX see above
+   >>> print log[0].message
    clap() is no more.
 
 
@@ -191,7 +191,7 @@ our deprecation message as expected:
    >>> with warnings.catch_warnings(record=True) as log:
    ...     del warnings.filters[:]
    ...     from zope.wanda import deprecated
-   >>> print log[0].message.message # XXX see above
+   >>> print log[0].message
    A module called Wanda is now zope.deprecation.
 
 Before we move on, we should clean up:
@@ -255,7 +255,7 @@ the old location:
    ...     del warnings.filters[:]
    ...     import zope.deprecation.old_location
    new module imported
-   >>> print log[0].message.message
+   >>> print log[0].message
    ... # doctest: +NORMALIZE_WHITESPACE
    zope.deprecation.old_location has moved to zope.deprecation.new_location.
    Import of zope.deprecation.old_location will become unsupported
