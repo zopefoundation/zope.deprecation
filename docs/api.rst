@@ -222,7 +222,8 @@ module on the new location should be used:
    >>> def create_module(modules=(), **kw): #** highlightfail
    ...     modules = dict(modules)
    ...     modules.update(kw)
-   ...     for name, src in modules.iteritems():
+   ...     modules.update(kw)
+   ...     for name, src in sorted(modules.items()):
    ...         pname = name.split('.')
    ...         if pname[-1] == '__init__':
    ...             os.mkdir(os.path.join(tmp_d, *pname[:-1])) #* highlightfail
