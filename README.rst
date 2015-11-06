@@ -1,7 +1,7 @@
 ``zope.deprecation``
 ====================
 
-.. image:: https://pypip.in/version/zope.deprecation/badge.svg?style=flat
+.. image:: https://img.shields.io/pypi/v/zope.deprecation.svg
     :target: https://pypi.python.org/pypi/zope.deprecation/
     :alt: Latest Version
 
