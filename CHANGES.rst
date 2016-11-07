@@ -1,7 +1,7 @@
 ``zope.deprecation`` Changelog
 ==============================
 
-4.2.0 (unreleased)
+4.2.0 (2016-11-07)
 ------------------
 
 - Drop support for Python 2.6 and 3.2.
