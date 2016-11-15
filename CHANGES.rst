@@ -1,10 +1,12 @@
 ``zope.deprecation`` Changelog
 ==============================
 
-4.2.1 (unreleased)
+4.3.0 (unreleased)
 ------------------
 
-- TBD
+- Allow custom warning classes to be specified to override the default
+  ``DeprecationWarning``.
+  See https://github.com/zopefoundation/zope.deprecation/pull/7
 
 4.2.0 (2016-11-07)
 ------------------
