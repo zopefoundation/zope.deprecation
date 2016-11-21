@@ -55,7 +55,6 @@ setup(
     package_dir = {'': 'src'},
     packages=find_packages('src'),
     namespace_packages=['zope',],
-    install_requires = 'setuptools',
     include_package_data = True,
     zip_safe = False,
     test_suite='zope.deprecation',
