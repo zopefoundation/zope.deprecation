@@ -5,6 +5,8 @@ _build
 docs/_build
 .tox
 .coverage
+.coverage.*
+htmlcov/
 nosetests.xml
 coverage.xml
 .installed.cfg

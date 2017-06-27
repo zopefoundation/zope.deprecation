@@ -1,5 +1,10 @@
 include *.rst
 include *.txt
+include .coveragerc
+include tox.ini
+include .travis.yml
+include bootstrap.py
+include buildout.cfg
 
 recursive-include docs *
 recursive-include src *

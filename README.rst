@@ -1,5 +1,6 @@
-``zope.deprecation``
-====================
+======================
+ ``zope.deprecation``
+======================
 
 .. image:: https://img.shields.io/pypi/v/zope.deprecation.svg
     :target: https://pypi.python.org/pypi/zope.deprecation/
@@ -7,13 +8,18 @@
 
 .. image:: https://travis-ci.org/zopefoundation/zope.deprecation.png?branch=master
         :target: https://travis-ci.org/zopefoundation/zope.deprecation
+        :alt: Build Status
 
 .. image:: https://readthedocs.org/projects/zopedeprecation/badge/?version=latest
         :target: http://zopedeprecation.readthedocs.io/en/latest/
         :alt: Documentation Status
 
+.. image:: https://coveralls.io/repos/github/zopefoundation/zope.deprecation/badge.svg?branch=master
+        :target: https://coveralls.io/github/zopefoundation/zope.deprecation?branch=master
+        :alt: Coverage Status
+
+
 This package provides a simple function called ``deprecated(names, reason)``
 to mark deprecated modules, classes, functions, methods and properties.
 
 Please see http://zopedeprecation.readthedocs.io for the documentation.
-

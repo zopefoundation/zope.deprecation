@@ -1,33 +1,36 @@
-``zope.deprecation`` Changelog
-==============================
+================================
+ ``zope.deprecation`` Changelog
+================================
 
 4.3.0 (unreleased)
-------------------
+==================
 
 - Allow custom warning classes to be specified to override the default
   ``DeprecationWarning``.
   See https://github.com/zopefoundation/zope.deprecation/pull/7
 
+- Add support for Python 3.6.
+
 4.2.0 (2016-11-07)
-------------------
+==================
 
 - Drop support for Python 2.6 and 3.2.
 
 - Add support for Python 3.5.
 
 4.1.2 (2015-01-13)
-------------------
+==================
 
 - Do not require a ``self`` parameter for deprecated functions.  See:
   https://github.com/zopefoundation/zope.deprecation/pull/1
 
 4.1.1 (2014-03-19)
-------------------
+==================
 
 - Added explicit support for Python 3.4.
 
 4.1.0 (2013-12-20)
-------------------
+==================
 
 - Added a ``Suppressor`` context manager, allowing scoped suppression of
   deprecation warnings.
@@ -35,17 +38,17 @@
 - Updated ``boostrap.py`` to version 2.2.
 
 4.0.2 (2012-12-31)
-------------------
+==================
 
 - Fleshed out PyPI Trove classifiers.
 
 4.0.1 (2012-11-21)
-------------------
+==================
 
 - Added support for Python 3.3.
 
 4.0.0 (2012-05-16)
-------------------
+==================
 
 - Automated build of Sphinx HTML docs and running doctest snippets via tox.
 
@@ -70,13 +73,13 @@
 
 
 3.5.1 (2012-03-15)
-------------------
+==================
 
 - Revert a move of `README.txt` to unbreak ``zope.app.apidoc``.
 
 
 3.5.0 (2011-09-05)
-------------------
+==================
 
 - Replaced doctesting with unit testing.
 
@@ -84,7 +87,7 @@
 
 
 3.4.1 (2011-06-07)
-------------------
+==================
 
 - Removed import cycle for ``__show__`` by defining it in the
   ``zope.deprecation.deprecation`` module.
@@ -96,13 +99,13 @@
 
 
 3.4.0 (2007-07-19)
-------------------
+==================
 
 - Release 3.4 final, corresponding to Zope 3.4.
 
 
 3.3.0 (2007-02-18)
-------------------
+==================
 
 - Corresponds to the version of the ``zope.deprecation`` package shipped as
   part of the Zope 3.3.0 release.

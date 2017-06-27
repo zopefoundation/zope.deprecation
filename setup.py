@@ -24,12 +24,13 @@ from setuptools import setup, find_packages
 
 
 def read(*rnames):
-    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+    with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
+        return f.read()
 
 setup(
     name='zope.deprecation',
     version='4.2.1.dev0',
-    url='http://pypi.python.org/pypi/zope.deprecation',
+    url='http://github.com/zopefoundation/zope.deprecation',
     license='ZPL 2.1',
     description='Zope Deprecation Infrastructure',
     author='Zope Corporation and Contributors',
@@ -38,7 +39,8 @@ setup(
         read('README.rst')
         + '\n\n' +
         read('CHANGES.rst')
-        ),
+    ),
+    keywords=["deprecation", "deprecated", "warning"],
     classifiers=[
         "Intended Audience :: Developers",
         "Programming Language :: Python",
@@ -48,19 +50,24 @@ setup(
         "Programming Language :: Python :: 3.3",
         "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
         "Framework :: Zope3",
-        ],
-    package_dir = {'': 'src'},
+    ],
+    package_dir={'': 'src'},
     packages=find_packages('src'),
     namespace_packages=['zope',],
-    install_requires = 'setuptools',
-    include_package_data = True,
-    zip_safe = False,
+    install_requires=[
+        'setuptools',
+    ],
+    include_package_data=True,
+    zip_safe=False,
     test_suite='zope.deprecation',
     extras_require={
         'docs': ['Sphinx'],
-        'testing': ['nose', 'coverage'],
+        'test': [
+            'zope.testrunner',
+        ],
     },
 )
