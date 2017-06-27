@@ -30,7 +30,7 @@ def read(*rnames):
 setup(
     name='zope.deprecation',
     version='4.2.1.dev0',
-    url='http://pypi.python.org/pypi/zope.deprecation',
+    url='http://github.com/zopefoundation/zope.deprecation',
     license='ZPL 2.1',
     description='Zope Deprecation Infrastructure',
     author='Zope Corporation and Contributors',
@@ -39,7 +39,8 @@ setup(
         read('README.rst')
         + '\n\n' +
         read('CHANGES.rst')
-        ),
+    ),
+    keywords=["deprecation", "deprecated", "warning"],
     classifiers=[
         "Intended Audience :: Developers",
         "Programming Language :: Python",
