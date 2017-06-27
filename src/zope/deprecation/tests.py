@@ -484,7 +484,7 @@ class Test_deprecate(WarningsSetupBase, unittest.TestCase):
         return cls(msg, *args)
 
     def fixture(self):
-        raise NotImplementedError()
+        return 42
 
     def test___call__(self):
         proxy = self._makeOne('hello')
@@ -493,6 +493,14 @@ class Test_deprecate(WarningsSetupBase, unittest.TestCase):
         self.assertEqual(
             self.warnings.w,
             [('hello', DeprecationWarning, 2)])
+
+    def test___call__method(self):
+        proxy = self._makeOne('method')
+        result = proxy(self.fixture)
+        self.assertEqual(result(), 42)
+        self.assertEqual(
+            self.warnings.w,
+            [('method', DeprecationWarning, 2)])
 
     def test___call__with_custom_cls(self):
         proxy = self._makeOne('hello', DummyWarning)
