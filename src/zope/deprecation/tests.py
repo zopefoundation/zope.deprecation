@@ -17,13 +17,13 @@ class TestShowSwitch(unittest.TestCase):
         switch = self._makeOne()
         switch.off()
         self.assertEqual(switch.stack, [False])
-        
+
     def test_reset(self):
         switch = self._makeOne()
         switch.stack.append(False)
         switch.reset()
         self.assertEqual(switch.stack, [])
-            
+
     def test_call_true(self):
         switch = self._makeOne()
         self.assertEqual(switch(), True)
@@ -36,7 +36,7 @@ class TestShowSwitch(unittest.TestCase):
     def test_repr_on(self):
         switch = self._makeOne()
         self.assertEqual(repr(switch), '<ShowSwitch on>')
-        
+
     def test_repr_off(self):
         switch = self._makeOne()
         switch.stack.append(False)
@@ -77,7 +77,7 @@ class TestDeprecationProxy(WarningsSetupBase, unittest.TestCase):
     def _getTargetClass(self):
         from zope.deprecation.deprecation import DeprecationProxy
         return DeprecationProxy
-        
+
     def _makeOne(self, module):
         cls = self._getTargetClass()
         return cls(module)
@@ -168,7 +168,7 @@ class TestDeprecatedModule(WarningsSetupBase, unittest.TestCase):
     def _getTargetClass(self):
         from zope.deprecation.deprecation import DeprecatedModule
         return DeprecatedModule
-        
+
     def _makeOne(self, module, msg, *args):
         cls = self._getTargetClass()
         return cls(module, msg, *args)
@@ -251,7 +251,7 @@ class TestDeprecatedGetProperty(WarningsSetupBase, unittest.TestCase):
     def _getTargetClass(self):
         from zope.deprecation.deprecation import DeprecatedGetProperty
         return DeprecatedGetProperty
-        
+
     def _makeOne(self, prop, msg, *args):
         cls = self._getTargetClass()
         return cls(prop, msg, *args)
@@ -291,7 +291,7 @@ class TestDeprecatedGetSetProperty(TestDeprecatedGetProperty):
     def _getTargetClass(self):
         from zope.deprecation.deprecation import DeprecatedGetSetProperty
         return DeprecatedGetSetProperty
-        
+
     def test___set__(self):
         prop = DummyProperty()
         proxy = self._makeOne(prop, 'hello')
@@ -302,7 +302,7 @@ class TestDeprecatedGetSetProperty(TestDeprecatedGetProperty):
             self.warnings.w,
             [('hello', DeprecationWarning, 2)]
             )
-        
+
     def test___set___with_custom_cls(self):
         prop = DummyProperty()
         proxy = self._makeOne(prop, 'hello', DummyWarning)
@@ -327,7 +327,7 @@ class TestDeprecatedSetGetDeleteProperty(TestDeprecatedGetSetProperty):
     def _getTargetClass(self):
         from zope.deprecation.deprecation import DeprecatedGetSetDeleteProperty
         return DeprecatedGetSetDeleteProperty
-        
+
     def test___delete__(self):
         prop = DummyProperty()
         proxy = self._makeOne(prop, 'hello')
@@ -337,7 +337,7 @@ class TestDeprecatedSetGetDeleteProperty(TestDeprecatedGetSetProperty):
             self.warnings.w,
             [('hello', DeprecationWarning, 2)]
             )
-        
+
     def test___delete___with_custom_cls(self):
         prop = DummyProperty()
         proxy = self._makeOne(prop, 'hello', DummyWarning)
@@ -437,7 +437,7 @@ class Test_deprecated(WarningsSetupBase, unittest.TestCase):
         self.assertEqual(
             self.warnings.w,
             [('hello', DeprecationWarning, 2)])
-        
+
     def test_module_specifier(self):
         mod = _getTestsModule()
         result = self._callFUT(mod, 'hello')
@@ -455,7 +455,7 @@ class Test_deprecated(WarningsSetupBase, unittest.TestCase):
         self.assertEqual(
             self.warnings.w,
             [('hello', DeprecationWarning, 2)])
-        
+
     def test_getsetproperty_specifier(self):
         prop = DummyGetSetProperty()
         result = self._callFUT(prop, 'hello')
@@ -478,13 +478,13 @@ class Test_deprecate(WarningsSetupBase, unittest.TestCase):
     def _getTargetClass(self):
         from zope.deprecation.deprecation import deprecate
         return deprecate
-        
+
     def _makeOne(self, msg, *args):
         cls = self._getTargetClass()
         return cls(msg, *args)
 
     def fixture(self):
-        return 'fixture'
+        raise NotImplementedError()
 
     def test___call__(self):
         proxy = self._makeOne('hello')
@@ -508,7 +508,7 @@ class Test_moved(WarningsSetupBase, unittest.TestCase):
 
     def tearDown(self):
         super(Test_moved, self).tearDown()
-        del _getTestsModule().__dict__['abc'] 
+        del _getTestsModule().__dict__['abc']
 
     def _callFUT(self, to_location, unsupported_in, *args):
         from zope.deprecation.deprecation import moved
@@ -543,7 +543,7 @@ class Test_import_aliases(unittest.TestCase):
             real = getattr(sys.modules['zope.deprecation.deprecation'], name)
             alias = getattr(sys.modules['zope.deprecation'], name)
             self.assertEqual(real, alias, (real, alias))
-        
+
 class DummyWarningsModule(object):
     def __init__(self):
         self.w = []

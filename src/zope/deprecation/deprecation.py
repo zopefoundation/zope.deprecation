@@ -23,9 +23,9 @@ import warnings
 
 PY3 = sys.version_info[0] == 3
 
-if PY3: #pragma NO COVER
+if PY3:
     str_and_sequence_types = (str, list, tuple)
-else: #pragma NO COVER
+else:
     str_and_sequence_types = (basestring, list, tuple)
 
 class ShowSwitch(object):
@@ -83,7 +83,7 @@ class DeprecationProxy(object):
 
         if name == '__class__':
             return types.ModuleType
-        
+
         if name in ogetattr(self, '_DeprecationProxy__deprecated'):
             if __show__():
                 msg, cls = self.__deprecated[name]
@@ -103,7 +103,7 @@ class DeprecationProxy(object):
             return object.__delattr__(self, name)
 
         delattr(self.__original_module, name)
-        
+
 class DeprecatedModule(object):
 
     def __init__(self, module, msg, cls=DeprecationWarning):
@@ -117,7 +117,7 @@ class DeprecatedModule(object):
 
         if name == '__class__':
             return types.ModuleType
-        
+
         if __show__():
             warnings.warn(self.__msg, self.__cls, 2)
 
@@ -216,7 +216,7 @@ def moved(to_location, unsupported_in=None, cls=DeprecationWarning):
     if unsupported_in:
         message += " Import of %s will become unsupported in %s" % (
             old, unsupported_in)
-    
+
     warnings.warn(message, cls, 3)
     __import__(to_location)
 
@@ -227,5 +227,3 @@ def moved(to_location, unsupported_in=None, cls=DeprecationWarning):
     for name, v in fromdict.items():
         if name not in tomod.__dict__:
             setattr(tomod, name, v)
-
-    

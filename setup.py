@@ -24,7 +24,8 @@ from setuptools import setup, find_packages
 
 
 def read(*rnames):
-    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+    with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
+        return f.read()
 
 setup(
     name='zope.deprecation',
@@ -48,19 +49,24 @@ setup(
         "Programming Language :: Python :: 3.3",
         "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
         "Framework :: Zope3",
-        ],
-    package_dir = {'': 'src'},
+    ],
+    package_dir={'': 'src'},
     packages=find_packages('src'),
     namespace_packages=['zope',],
-    install_requires = 'setuptools',
-    include_package_data = True,
-    zip_safe = False,
+    install_requires=[
+        'setuptools',
+    ],
+    include_package_data=True,
+    zip_safe=False,
     test_suite='zope.deprecation',
     extras_require={
         'docs': ['Sphinx'],
-        'testing': ['nose', 'coverage'],
+        'test': [
+            'zope.testrunner',
+        ],
     },
 )
