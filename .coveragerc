@@ -1,5 +1,9 @@
 [run]
 source = zope.deprecation
+omit =
+    *old_location.py
+    */new_package/*
+    */old_package/*
 
 [report]
 exclude_lines =
