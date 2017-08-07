@@ -21,12 +21,7 @@ import sys
 import types
 import warnings
 
-PY3 = sys.version_info[0] == 3
-
-if PY3:
-    str_and_sequence_types = (str, list, tuple)
-else:
-    str_and_sequence_types = (basestring, list, tuple)
+str_and_sequence_types = (str if str is not bytes else basestring, list, tuple)
 
 class ShowSwitch(object):
     """Simple stack-based switch."""

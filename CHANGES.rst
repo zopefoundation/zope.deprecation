@@ -11,6 +11,8 @@
 
 - Add support for Python 3.6.
 
+- Drop support for Python 3.3.
+
 4.2.0 (2016-11-07)
 ==================
 

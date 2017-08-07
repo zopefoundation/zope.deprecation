@@ -1,8 +1,9 @@
-:mod:`zope.deprecation` API
-===========================
+=============================
+ :mod:`zope.deprecation` API
+=============================
 
 Deprecating objects inside a module
------------------------------------
+===================================
 
 Let's start with a demonstration of deprecating any name inside a module. To
 demonstrate the functionality, First, let's set up an example module containing
@@ -17,27 +18,27 @@ fixtures we will use:
    >>> zope.deprecation.__path__.append(tmp_d)
    >>> doctest_ex = '''\
    ... from . import deprecated
-   ... 
-   ... def demo1(): #pragma NO COVER  (used only in doctests)
+   ...
+   ... def demo1():
    ...     return 1
    ... deprecated('demo1', 'demo1 is no more.')
-   ... 
-   ... def demo2(): #pragma NO COVER  (used only in doctests)
+   ...
+   ... def demo2():
    ...     return 2
    ... deprecated('demo2', 'demo2 is no more.')
-   ... 
-   ... def demo3(): #pragma NO COVER  (used only in doctests)
+   ...
+   ... def demo3():
    ...     return 3
    ... deprecated('demo3', 'demo3 is no more.')
-   ... 
-   ... def demo4(): #pragma NO COVER  (used only in doctests)
+   ...
+   ... def demo4():
    ...     return 4
-   ... def deprecatedemo4(): #pragma NO COVER  (used only in doctests)
+   ... def deprecatedemo4():
    ...     """Demonstrate that deprecated() also works in a local scope."""
    ...     deprecated('demo4', 'demo4 is no more.')
    ... '''
    >>> with open(os.path.join(tmp_d, 'doctest_ex.py'), 'w') as f:
-   ...     f.write(doctest_ex)
+   ...     _ = f.write(doctest_ex)
 
 The first argument to the ``deprecated()`` function is a list of names that
 should be declared deprecated. If the first argument is a string, it is
@@ -55,9 +56,9 @@ Let's now see how the deprecation warnings are displayed.
    ...     del warnings.filters[:]
    ...     doctest_ex.demo1()
    1
-   >>> print log[0].category.__name__
+   >>> print(log[0].category.__name__)
    DeprecationWarning
-   >>> print log[0].message
+   >>> print(log[0].message)
    demo1: demo1 is no more.
 
    >>> import zope.deprecation.doctest_ex
@@ -65,7 +66,7 @@ Let's now see how the deprecation warnings are displayed.
    ...     del warnings.filters[:]
    ...     zope.deprecation.doctest_ex.demo2()
    2
-   >>> print log[0].message
+   >>> print(log[0].message)
    demo2: demo2 is no more.
 
 You can see that merely importing the affected module or one of its parents
@@ -78,7 +79,7 @@ name directly, the deprecation warning will be raised immediately.
    >>> with warnings.catch_warnings(record=True) as log:
    ...     del warnings.filters[:]
    ...     from zope.deprecation.doctest_ex import demo3
-   >>> print log[0].message
+   >>> print(log[0].message)
    demo3: demo3 is no more.
 
 Deprecation can also happen inside a function.  When we first access
@@ -99,12 +100,12 @@ the next access:
    ...     del warnings.filters[:]
    ...     doctest_ex.demo4()
    4
-   >>> print log[0].message
+   >>> print(log[0].message)
    demo4: demo4 is no more.
 
 
 Deprecating methods and properties
-----------------------------------
+==================================
 
 New let's see how properties and methods can be deprecated. We are going to
 use the same function as before, except that this time, we do not pass in names
@@ -141,7 +142,7 @@ And here is the result:
    ...     del warnings.filters[:]
    ...     my.foo
    1
-   >>> print log[0].message
+   >>> print(log[0].message)
    foo is no more.
    >>> with warnings.catch_warnings(record=True) as log:
    ...     del warnings.filters[:]
@@ -153,7 +154,7 @@ And here is the result:
    ...     del warnings.filters[:]
    ...     my.blah()
    3
-   >>> print log[0].message
+   >>> print(log[0].message)
    blah() is no more.
    >>> with warnings.catch_warnings(record=True) as log:
    ...     del warnings.filters[:]
@@ -165,12 +166,12 @@ And here is the result:
    ...     del warnings.filters[:]
    ...     my.clap()
    5
-   >>> print log[0].message
+   >>> print(log[0].message)
    clap() is no more.
 
 
 Deprecating modules
--------------------
+===================
 
 It is also possible to deprecate whole modules.  This is useful when
 creating module aliases for backward compatibility.  Let's imagine,
@@ -191,7 +192,7 @@ our deprecation message as expected:
    >>> with warnings.catch_warnings(record=True) as log:
    ...     del warnings.filters[:]
    ...     from zope.wanda import deprecated
-   >>> print log[0].message
+   >>> print(log[0].message)
    A module called Wanda is now zope.deprecation.
 
 Before we move on, we should clean up:
@@ -203,7 +204,7 @@ Before we move on, we should clean up:
 
 
 Moving modules
---------------
+==============
 
 When a module is moved, you often want to support importing from the
 old location for a while, generating a deprecation warning when
@@ -222,27 +223,30 @@ module on the new location should be used:
    >>> def create_module(modules=(), **kw): #** highlightfail
    ...     modules = dict(modules)
    ...     modules.update(kw)
-   ...     modules.update(kw)
    ...     for name, src in sorted(modules.items()):
    ...         pname = name.split('.')
    ...         if pname[-1] == '__init__':
    ...             os.mkdir(os.path.join(tmp_d, *pname[:-1])) #* highlightfail
    ...             name = '.'.join(pname[:-1])
-   ...         open(os.path.join(tmp_d, *pname)+'.py', 'w').write(src) #* hf
+   ...         with open(os.path.join(tmp_d, *pname) + '.py', 'w') as f:
+   ...             f.write(src) #* hf
    ...         created_modules.append(name)
+   ...     import importlib
+   ...     if hasattr(importlib, 'invalidate_caches'):
+   ...         importlib.invalidate_caches()
    >>> create_module(old_location=
    ... '''
    ... import zope.deprecation
    ... zope.deprecation.moved('zope.deprecation.new_location', 'version 2')
    ... ''')
-  
+
 and we define the module in the new location:
 
 .. doctest::
 
    >>> create_module(new_location=
    ... '''\
-   ... print "new module imported"
+   ... print("new module imported")
    ... x = 42
    ... ''')
 
@@ -255,7 +259,7 @@ the old location:
    ...     del warnings.filters[:]
    ...     import zope.deprecation.old_location
    new module imported
-   >>> print log[0].message
+   >>> print(log[0].message)
    ... # doctest: +NORMALIZE_WHITESPACE
    zope.deprecation.old_location has moved to zope.deprecation.new_location.
    Import of zope.deprecation.old_location will become unsupported
@@ -264,29 +268,29 @@ the old location:
    42
 
 Moving packages
----------------
+===============
 
-When moving packages, you need to leave placeholders for each 
+When moving packages, you need to leave placeholders for each
 module.  Let's look at an example:
 
 .. doctest::
 
    >>> create_module({
    ... 'new_package.__init__': '''\
-   ... print __name__, 'imported'
+   ... print(__name__ + ' imported')
    ... x=0
    ... ''',
    ... 'new_package.m1': '''\
-   ... print __name__, 'imported'
+   ... print(__name__ + ' imported')
    ... x=1
    ... ''',
    ... 'new_package.m2': '''\
-   ... print __name__, 'imported'
+   ... print(__name__ + ' imported')
    ... def x():
    ...     pass
    ... ''',
    ... 'new_package.m3': '''\
-   ... print __name__, 'imported'
+   ... print(__name__ + ' imported')
    ... x=3
    ... ''',
    ... 'old_package.__init__': '''\
@@ -312,7 +316,7 @@ Now, if we import the old modules, we'll get warnings:
    ...     del warnings.filters[:]
    ...     import zope.deprecation.old_package
    zope.deprecation.new_package imported
-   >>> print log[0].message
+   >>> print(log[0].message)
    ... # doctest: +NORMALIZE_WHITESPACE
    zope.deprecation.old_package has moved to zope.deprecation.new_package.
    Import of zope.deprecation.old_package will become unsupported in version 2
@@ -323,7 +327,7 @@ Now, if we import the old modules, we'll get warnings:
    ...     del warnings.filters[:]
    ...     import zope.deprecation.old_package.m1
    zope.deprecation.new_package.m1 imported
-   >>> print log[0].message
+   >>> print(log[0].message)
    ... # doctest: +NORMALIZE_WHITESPACE
    zope.deprecation.old_package.m1 has moved to zope.deprecation.new_package.m1.
    Import of zope.deprecation.old_package.m1 will become unsupported in
@@ -335,7 +339,7 @@ Now, if we import the old modules, we'll get warnings:
    ...     del warnings.filters[:]
    ...     import zope.deprecation.old_package.m2
    zope.deprecation.new_package.m2 imported
-   >>> print log[0].message
+   >>> print(log[0].message)
    ... # doctest: +NORMALIZE_WHITESPACE
    zope.deprecation.old_package.m2 has moved to zope.deprecation.new_package.m2.
    Import of zope.deprecation.old_package.m2 will become unsupported in
@@ -343,7 +347,7 @@ Now, if we import the old modules, we'll get warnings:
    >>> zope.deprecation.old_package.m2.x is zope.deprecation.new_package.m2.x
    True
 
-   >>> (zope.deprecation.old_package.m2.x.func_globals
+   >>> (zope.deprecation.old_package.m2.x.__globals__
    ...  is zope.deprecation.new_package.m2.__dict__)
    True
 
@@ -351,14 +355,19 @@ Now, if we import the old modules, we'll get warnings:
    'zope.deprecation.new_package.m2'
 
 We'll get an error if we try to import m3, because we didn't create a
-placeholder for it:
+placeholder for it (Python 3.6 started raising ModuleNotFoundError, a
+subclass of ImportError with a different error message than earlier
+releases so we can't see that directly):
 
 .. doctest::
 
-   >>> import  zope.deprecation.old_package.m3
-   Traceback (most recent call last):
-   ...
-   ImportError: No module named m3
+   >>> try:
+   ...     import zope.deprecation.old_package.m3
+   ... except ImportError as e:
+   ...    print("No module named" in str(e))
+   ...    print("m3" in str(e))
+   True
+   True
 
 
 Before we move on, let's clean up the temporary modules / packages:
@@ -371,7 +380,7 @@ Before we move on, let's clean up the temporary modules / packages:
 
 
 Temporarily turning off deprecation warnings
---------------------------------------------
+============================================
 
 In some cases it is desireable to turn off the deprecation warnings for a
 short time.
@@ -420,7 +429,7 @@ Inside a suppressor's scope, that status is always false:
    ...     del warnings.filters[:]
    ...     foo.bar
    1
-   >>> print log[0].message
+   >>> print(log[0].message)
    bar is no more.
 
 If needed, your code can manage the depraction warnings manually using
