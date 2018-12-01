@@ -17,7 +17,7 @@
         :target: https://coveralls.io/github/zopefoundation/zope.deprecation?branch=master
 
 .. image:: https://readthedocs.org/projects/zopedeprecation/badge/?version=latest
-        :target: httpl://zopedeprecation.readthedocs.io/en/latest/
+        :target: https://zopedeprecation.readthedocs.io/en/latest/
         :alt: Documentation Status
 
 
