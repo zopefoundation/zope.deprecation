@@ -29,7 +29,7 @@ def read(*rnames):
 
 setup(
     name='zope.deprecation',
-    version='4.4.0',
+    version='4.4.1.dev0',
     url='https://github.com/zopefoundation/zope.deprecation',
     license='ZPL 2.1',
     description='Zope Deprecation Infrastructure',
