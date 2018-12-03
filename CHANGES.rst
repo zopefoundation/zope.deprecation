@@ -2,7 +2,7 @@
  ``zope.deprecation`` Changelog
 ================================
 
-4.4.0 (unreleased)
+4.4.0 (2018-12-03)
 ==================
 
 - Add support for Python 3.7.
