@@ -29,8 +29,8 @@ def read(*rnames):
 
 setup(
     name='zope.deprecation',
-    version='4.3.1.dev0',
-    url='http://github.com/zopefoundation/zope.deprecation',
+    version='4.4.0.dev0',
+    url='https://github.com/zopefoundation/zope.deprecation',
     license='ZPL 2.1',
     description='Zope Deprecation Infrastructure',
     author='Zope Corporation and Contributors',
@@ -50,6 +50,7 @@ setup(
         "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
         "Framework :: Zope :: 3",
