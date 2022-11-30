@@ -2,6 +2,7 @@ import sys
 import types
 import unittest
 
+
 class TestShowSwitch(unittest.TestCase):
     def _makeOne(self):
         from zope.deprecation import ShowSwitch
@@ -46,6 +47,7 @@ class TestShowSwitch(unittest.TestCase):
         from zope.deprecation import __show__
         self.assertEqual(self._makeOne().__class__, __show__.__class__)
 
+
 class TestSuppressor(unittest.TestCase):
     def _makeOne(self):
         from zope.deprecation import Suppressor
@@ -57,6 +59,7 @@ class TestSuppressor(unittest.TestCase):
         with self._makeOne():
             self.assertEqual(__show__.stack, [False])
         self.assertEqual(__show__.stack, [])
+
 
 class WarningsSetupBase(object):
     def setUp(self):
@@ -72,6 +75,7 @@ class WarningsSetupBase(object):
         from zope.deprecation import deprecation
         deprecation.warnings = self.oldwarnings
         deprecation.__show__ = self.oldshow
+
 
 class TestDeprecationProxy(WarningsSetupBase, unittest.TestCase):
     def _getTargetClass(self):
@@ -110,7 +114,8 @@ class TestDeprecationProxy(WarningsSetupBase, unittest.TestCase):
             self.warnings.w,
             [('ClassFixture: hello', DeprecationWarning, 2),
              ('ClassFixture2: hello', DeprecationWarning, 2)]
-            )
+        )
+
     def test_deprecate_and__getattribute__noshow(self):
         tests = _getTestsModule()
         proxy = self._makeOne(tests)
@@ -138,8 +143,8 @@ class TestDeprecationProxy(WarningsSetupBase, unittest.TestCase):
     def test___setattr__owned(self):
         tests = _getTestsModule()
         proxy = self._makeOne(tests)
-        proxy._DeprecationProxy__deprecated = {'foo':'bar'}
-        self.assertEqual(proxy._DeprecationProxy__deprecated, {'foo':'bar'})
+        proxy._DeprecationProxy__deprecated = {'foo': 'bar'}
+        self.assertEqual(proxy._DeprecationProxy__deprecated, {'foo': 'bar'})
 
     def test___setattr__notowned(self):
         tests = _getTestsModule()
@@ -163,6 +168,7 @@ class TestDeprecationProxy(WarningsSetupBase, unittest.TestCase):
         tests.foo = 'bar'
         del proxy.foo
         self.assertRaises(AttributeError, getattr, tests, 'foo')
+
 
 class TestDeprecatedModule(WarningsSetupBase, unittest.TestCase):
     def _getTargetClass(self):
@@ -190,7 +196,7 @@ class TestDeprecatedModule(WarningsSetupBase, unittest.TestCase):
         self.assertEqual(
             self.warnings.w,
             [('hello', DeprecationWarning, 2)]
-            )
+        )
 
     def test___getattribute___deprecated_with_custom_cls(self):
         tests = _getTestsModule()
@@ -199,7 +205,7 @@ class TestDeprecatedModule(WarningsSetupBase, unittest.TestCase):
         self.assertEqual(
             self.warnings.w,
             [('hello', DummyWarning, 2)]
-            )
+        )
 
     def test___getattribute__missing(self):
         tests = _getTestsModule()
@@ -208,7 +214,7 @@ class TestDeprecatedModule(WarningsSetupBase, unittest.TestCase):
         self.assertEqual(
             self.warnings.w,
             [('hello', DeprecationWarning, 2)]
-            )
+        )
 
     def test___getattribute___noshow(self):
         tests = _getTestsModule()
@@ -247,6 +253,7 @@ class TestDeprecatedModule(WarningsSetupBase, unittest.TestCase):
         del proxy.foo
         self.assertRaises(AttributeError, getattr, tests, 'foo')
 
+
 class TestDeprecatedGetProperty(WarningsSetupBase, unittest.TestCase):
     def _getTargetClass(self):
         from zope.deprecation.deprecation import DeprecatedGetProperty
@@ -265,7 +272,7 @@ class TestDeprecatedGetProperty(WarningsSetupBase, unittest.TestCase):
         self.assertEqual(
             self.warnings.w,
             [('hello', DeprecationWarning, 2)]
-            )
+        )
 
     def test___get___with_custom_cls(self):
         prop = DummyProperty()
@@ -276,7 +283,7 @@ class TestDeprecatedGetProperty(WarningsSetupBase, unittest.TestCase):
         self.assertEqual(
             self.warnings.w,
             [('hello', DummyWarning, 2)]
-            )
+        )
 
     def test___get__noshow(self):
         prop = DummyProperty()
@@ -286,6 +293,7 @@ class TestDeprecatedGetProperty(WarningsSetupBase, unittest.TestCase):
         self.assertEqual(prop.inst, 'inst')
         self.assertEqual(prop.cls, 'cls')
         self.assertEqual(self.warnings.w, [])
+
 
 class TestDeprecatedGetSetProperty(TestDeprecatedGetProperty):
     def _getTargetClass(self):
@@ -301,7 +309,7 @@ class TestDeprecatedGetSetProperty(TestDeprecatedGetProperty):
         self.assertEqual(
             self.warnings.w,
             [('hello', DeprecationWarning, 2)]
-            )
+        )
 
     def test___set___with_custom_cls(self):
         prop = DummyProperty()
@@ -312,7 +320,7 @@ class TestDeprecatedGetSetProperty(TestDeprecatedGetProperty):
         self.assertEqual(
             self.warnings.w,
             [('hello', DummyWarning, 2)]
-            )
+        )
 
     def test___set__noshow(self):
         prop = DummyProperty()
@@ -322,6 +330,7 @@ class TestDeprecatedGetSetProperty(TestDeprecatedGetProperty):
         self.assertEqual(prop.inst, 'inst')
         self.assertEqual(prop.prop, 'prop')
         self.assertEqual(self.warnings.w, [])
+
 
 class TestDeprecatedSetGetDeleteProperty(TestDeprecatedGetSetProperty):
     def _getTargetClass(self):
@@ -336,7 +345,7 @@ class TestDeprecatedSetGetDeleteProperty(TestDeprecatedGetSetProperty):
         self.assertEqual(
             self.warnings.w,
             [('hello', DeprecationWarning, 2)]
-            )
+        )
 
     def test___delete___with_custom_cls(self):
         prop = DummyProperty()
@@ -346,7 +355,7 @@ class TestDeprecatedSetGetDeleteProperty(TestDeprecatedGetSetProperty):
         self.assertEqual(
             self.warnings.w,
             [('hello', DummyWarning, 2)]
-            )
+        )
 
     def test___delete__noshow(self):
         prop = DummyProperty()
@@ -356,7 +365,8 @@ class TestDeprecatedSetGetDeleteProperty(TestDeprecatedGetSetProperty):
         self.assertEqual(
             self.warnings.w,
             [('hello', DeprecationWarning, 2)]
-            )
+        )
+
 
 class TestDeprecatedMethod(WarningsSetupBase, unittest.TestCase):
     def _callFUT(self, method, message, *args):
@@ -372,7 +382,7 @@ class TestDeprecatedMethod(WarningsSetupBase, unittest.TestCase):
         self.assertEqual(
             self.warnings.w,
             [('hello', DeprecationWarning, 2)]
-            )
+        )
 
     def test_it_with_custom_cls(self):
         result = self._callFUT(self.fixture, 'hello', DummyWarning)
@@ -380,13 +390,14 @@ class TestDeprecatedMethod(WarningsSetupBase, unittest.TestCase):
         self.assertEqual(
             self.warnings.w,
             [('hello', DummyWarning, 2)]
-            )
+        )
 
     def test_it_noshow(self):
         result = self._callFUT(self.fixture, 'hello')
         self.show.on = False
         self.assertEqual(result('a', 'b', c=2), 'fixture')
         self.assertEqual(self.warnings.w, [])
+
 
 class Test_deprecated(WarningsSetupBase, unittest.TestCase):
     def setUp(self):
@@ -474,6 +485,7 @@ class Test_deprecated(WarningsSetupBase, unittest.TestCase):
             self.warnings.w,
             [('hello', DeprecationWarning, 2)])
 
+
 class Test_deprecate(WarningsSetupBase, unittest.TestCase):
     def _getTargetClass(self):
         from zope.deprecation.deprecation import deprecate
@@ -510,6 +522,7 @@ class Test_deprecate(WarningsSetupBase, unittest.TestCase):
             self.warnings.w,
             [('hello', DummyWarning, 2)])
 
+
 class Test_moved(WarningsSetupBase, unittest.TestCase):
     def setUp(self):
         super(Test_moved, self).setUp()
@@ -526,23 +539,24 @@ class Test_moved(WarningsSetupBase, unittest.TestCase):
         self._callFUT('zope.deprecation.fixture', None)
         self.assertEqual(
             self.warnings.w,
-             [('zope.deprecation.tests has moved to zope.deprecation.fixture.',
-               DeprecationWarning, 3)])
+            [('zope.deprecation.tests has moved to zope.deprecation.fixture.',
+              DeprecationWarning, 3)])
 
     def test_unsupported_None_with_custom_cls(self):
         self._callFUT('zope.deprecation.fixture', None, DummyWarning)
         self.assertEqual(
             self.warnings.w,
-             [('zope.deprecation.tests has moved to zope.deprecation.fixture.',
-               DummyWarning, 3)])
+            [('zope.deprecation.tests has moved to zope.deprecation.fixture.',
+              DummyWarning, 3)])
 
     def test_unsupported_not_None(self):
         self._callFUT('zope.deprecation.fixture', '1.3')
         self.assertEqual(
             self.warnings.w,
             [('zope.deprecation.tests has moved to zope.deprecation.fixture. '
-              'Import of zope.deprecation.tests will become unsupported in 1.3',
-              DeprecationWarning, 3)])
+              'Import of zope.deprecation.tests will become unsupported in '
+              '1.3', DeprecationWarning, 3)])
+
 
 class Test_import_aliases(unittest.TestCase):
     def test_it(self):
@@ -552,6 +566,7 @@ class Test_import_aliases(unittest.TestCase):
             alias = getattr(sys.modules['zope.deprecation'], name)
             self.assertEqual(real, alias, (real, alias))
 
+
 class DummyWarningsModule(object):
     def __init__(self):
         self.w = []
@@ -559,28 +574,35 @@ class DummyWarningsModule(object):
     def warn(self, msg, type, stacklevel):
         self.w.append((msg, type, stacklevel))
 
+
 class DummyGetProperty(object):
     def __get__(self, inst, cls):
         self.inst = inst
         self.cls = cls
+
 
 class DummyGetSetProperty(DummyGetProperty):
     def __set__(self, inst, prop):
         self.inst = inst
         self.prop = prop
 
+
 class DummyGetSetDeleteProperty(DummyGetSetProperty):
     def __delete__(self, inst):
         self.inst = inst
 
+
 class DummyWarning(DeprecationWarning):
     pass
 
+
 DummyProperty = DummyGetSetDeleteProperty
+
 
 def _getTestsModule():
     __import__('zope.deprecation.tests')
     return sys.modules['zope.deprecation.tests']
+
 
 class DummyShow(object):
     def __init__(self):
@@ -591,8 +613,13 @@ class DummyShow(object):
             return True
         return False
 
-class ClassFixture(object): pass
 
-class ClassFixture2(object): pass
+class ClassFixture(object):
+    pass
+
+
+class ClassFixture2(object):
+    pass
+
 
 def functionfixture(): pass
