@@ -10,8 +10,8 @@
         :target: https://pypi.org/project/zope.deprecation/
         :alt: Supported Python versions
 
-.. image:: https://travis-ci.com/zopefoundation/zope.deprecation.svg?branch=master
-        :target: https://travis-ci.com/zopefoundation/zope.deprecation
+.. image:: https://github.com/zopefoundation/zope.deprecation/actions/workflows/tests.yml/badge.svg
+        :target: https://github.com/zopefoundation/zope.deprecation/actions/workflows/tests.yml
 
 .. image:: https://coveralls.io/repos/github/zopefoundation/zope.deprecation/badge.svg?branch=master
         :target: https://coveralls.io/github/zopefoundation/zope.deprecation?branch=master
