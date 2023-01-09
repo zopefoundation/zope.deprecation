@@ -21,7 +21,12 @@ import sys
 import types
 import warnings
 
-str_and_sequence_types = (str if str is not bytes else basestring, list, tuple)
+
+str_and_sequence_types = (
+    str
+    if str is not bytes
+    else basestring, list, tuple)  # noqa: F821 undefined name 'basestring'
+
 
 class ShowSwitch(object):
     """Simple stack-based switch."""
@@ -42,13 +47,14 @@ class ShowSwitch(object):
         return self.stack == []
 
     def __repr__(self):
-        return '<ShowSwitch %s>' %(self() and 'on' or 'off')
+        return '<ShowSwitch %s>' % (self() and 'on' or 'off')
 
 
-# This attribute can be used to temporarly deactivate deprecation
+# This attribute can be used to temporarily deactivate deprecation
 # warnings, so that backward-compatibility code can import other
-# backward-compatiblity components without warnings being produced.
+# backward-compatibility components without warnings being produced.
 __show__ = ShowSwitch()
+
 
 class Suppressor(object):
 
@@ -58,7 +64,10 @@ class Suppressor(object):
     def __exit__(self, *ignored):
         __show__.on()
 
+
 ogetattr = object.__getattribute__
+
+
 class DeprecationProxy(object):
 
     def __init__(self, module):
@@ -99,6 +108,7 @@ class DeprecationProxy(object):
 
         delattr(self.__original_module, name)
 
+
 class DeprecatedModule(object):
 
     def __init__(self, module, msg, cls=DeprecationWarning):
@@ -129,6 +139,7 @@ class DeprecatedModule(object):
             return object.__delattr__(self, name)
         delattr(self.__original_module, name)
 
+
 class DeprecatedGetProperty(object):
 
     def __init__(self, prop, message, cls=DeprecationWarning):
@@ -141,6 +152,7 @@ class DeprecatedGetProperty(object):
             warnings.warn(self.message, self.cls, 2)
         return self.prop.__get__(inst, klass)
 
+
 class DeprecatedGetSetProperty(DeprecatedGetProperty):
 
     def __set__(self, inst, prop):
@@ -148,12 +160,14 @@ class DeprecatedGetSetProperty(DeprecatedGetProperty):
             warnings.warn(self.message, self.cls, 2)
         self.prop.__set__(inst, prop)
 
+
 class DeprecatedGetSetDeleteProperty(DeprecatedGetSetProperty):
 
     def __delete__(self, inst):
         if __show__():
             warnings.warn(self.message, self.cls, 2)
         self.prop.__delete__(inst)
+
 
 def DeprecatedMethod(method, message, cls=DeprecationWarning):
 
@@ -163,6 +177,7 @@ def DeprecatedMethod(method, message, cls=DeprecationWarning):
         return method(*args, **kw)
 
     return deprecated_method
+
 
 def deprecated(specifier, message, cls=DeprecationWarning):
     """Deprecate the given names."""
@@ -178,7 +193,6 @@ def deprecated(specifier, message, cls=DeprecationWarning):
             sys.modules[modname] = DeprecationProxy(sys.modules[modname])
         sys.modules[modname].deprecate(specifier, message, cls)
 
-
     # Anything else can mean the specifier is a function/method,
     # module, or just an attribute of a class
     elif isinstance(specifier, types.FunctionType):
@@ -188,12 +202,13 @@ def deprecated(specifier, message, cls=DeprecationWarning):
     else:
         prop = specifier
         if hasattr(prop, '__get__') and hasattr(prop, '__set__') and \
-               hasattr(prop, '__delete__'):
+                hasattr(prop, '__delete__'):
             return DeprecatedGetSetDeleteProperty(prop, message, cls)
         elif hasattr(prop, '__get__') and hasattr(prop, '__set__'):
             return DeprecatedGetSetProperty(prop, message, cls)
         elif hasattr(prop, '__get__'):
             return DeprecatedGetProperty(prop, message, cls)
+
 
 class deprecate(object):
     """Deprecation decorator"""
@@ -204,6 +219,7 @@ class deprecate(object):
 
     def __call__(self, func):
         return DeprecatedMethod(func, self.msg, self.cls)
+
 
 def moved(to_location, unsupported_in=None, cls=DeprecationWarning):
     old = sys._getframe(1).f_globals['__name__']

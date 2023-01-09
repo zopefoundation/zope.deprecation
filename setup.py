@@ -20,16 +20,19 @@
 """
 
 import os
-from setuptools import setup, find_packages
+
+from setuptools import find_packages
+from setuptools import setup
 
 
 def read(*rnames):
     with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
         return f.read()
 
+
 setup(
     name='zope.deprecation',
-    version='4.4.1.dev0',
+    version='4.5.dev0',
     url='https://github.com/zopefoundation/zope.deprecation',
     license='ZPL 2.1',
     description='Zope Deprecation Infrastructure',
@@ -48,17 +51,20 @@ setup(
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
         "Framework :: Zope :: 3",
     ],
     package_dir={'': 'src'},
     packages=find_packages('src'),
-    namespace_packages=['zope',],
+    namespace_packages=['zope', ],
     install_requires=[
         'setuptools',
     ],
