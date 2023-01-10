@@ -32,7 +32,7 @@ def read(*rnames):
 
 setup(
     name='zope.deprecation',
-    version='4.5.dev0',
+    version='5.0.dev0',
     url='https://github.com/zopefoundation/zope.deprecation',
     license='ZPL 2.1',
     description='Zope Deprecation Infrastructure',
@@ -48,11 +48,7 @@ setup(
         "Intended Audience :: Developers",
         "License :: OSI Approved :: Zope Public License",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.5",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
@@ -65,6 +61,7 @@ setup(
     package_dir={'': 'src'},
     packages=find_packages('src'),
     namespace_packages=['zope', ],
+    python_requires='>= 3.7',
     install_requires=[
         'setuptools',
     ],
