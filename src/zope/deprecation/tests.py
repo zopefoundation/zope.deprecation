@@ -61,7 +61,7 @@ class TestSuppressor(unittest.TestCase):
         self.assertEqual(__show__.stack, [])
 
 
-class WarningsSetupBase(object):
+class WarningsSetupBase:
     def setUp(self):
         from zope.deprecation import deprecation
         self.oldwarnings = deprecation.warnings
@@ -401,11 +401,11 @@ class TestDeprecatedMethod(WarningsSetupBase, unittest.TestCase):
 
 class Test_deprecated(WarningsSetupBase, unittest.TestCase):
     def setUp(self):
-        super(Test_deprecated, self).setUp()
+        super().setUp()
         self.mod = _getTestsModule()
 
     def tearDown(self):
-        super(Test_deprecated, self).tearDown()
+        super().tearDown()
         sys.modules['zope.deprecation.tests'] = self.mod
 
     def _callFUT(self, spec, message, *args):
@@ -525,10 +525,10 @@ class Test_deprecate(WarningsSetupBase, unittest.TestCase):
 
 class Test_moved(WarningsSetupBase, unittest.TestCase):
     def setUp(self):
-        super(Test_moved, self).setUp()
+        super().setUp()
 
     def tearDown(self):
-        super(Test_moved, self).tearDown()
+        super().tearDown()
         del _getTestsModule().__dict__['abc']
 
     def _callFUT(self, to_location, unsupported_in, *args):
@@ -567,7 +567,7 @@ class Test_import_aliases(unittest.TestCase):
             self.assertEqual(real, alias, (real, alias))
 
 
-class DummyWarningsModule(object):
+class DummyWarningsModule:
     def __init__(self):
         self.w = []
 
@@ -575,7 +575,7 @@ class DummyWarningsModule(object):
         self.w.append((msg, type, stacklevel))
 
 
-class DummyGetProperty(object):
+class DummyGetProperty:
     def __get__(self, inst, cls):
         self.inst = inst
         self.cls = cls
@@ -604,7 +604,7 @@ def _getTestsModule():
     return sys.modules['zope.deprecation.tests']
 
 
-class DummyShow(object):
+class DummyShow:
     def __init__(self):
         self.on = True
 
@@ -614,11 +614,11 @@ class DummyShow(object):
         return False
 
 
-class ClassFixture(object):
+class ClassFixture:
     pass
 
 
-class ClassFixture2(object):
+class ClassFixture2:
     pass
 
 

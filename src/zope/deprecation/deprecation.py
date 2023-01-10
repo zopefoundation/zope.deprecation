@@ -28,7 +28,7 @@ str_and_sequence_types = (
     else basestring, list, tuple)  # noqa: F821 undefined name 'basestring'
 
 
-class ShowSwitch(object):
+class ShowSwitch:
     """Simple stack-based switch."""
 
     def __init__(self):
@@ -56,7 +56,7 @@ class ShowSwitch(object):
 __show__ = ShowSwitch()
 
 
-class Suppressor(object):
+class Suppressor:
 
     def __enter__(self):
         __show__.off()
@@ -68,7 +68,7 @@ class Suppressor(object):
 ogetattr = object.__getattribute__
 
 
-class DeprecationProxy(object):
+class DeprecationProxy:
 
     def __init__(self, module):
         self.__original_module = module
@@ -109,7 +109,7 @@ class DeprecationProxy(object):
         delattr(self.__original_module, name)
 
 
-class DeprecatedModule(object):
+class DeprecatedModule:
 
     def __init__(self, module, msg, cls=DeprecationWarning):
         self.__original_module = module
@@ -140,7 +140,7 @@ class DeprecatedModule(object):
         delattr(self.__original_module, name)
 
 
-class DeprecatedGetProperty(object):
+class DeprecatedGetProperty:
 
     def __init__(self, prop, message, cls=DeprecationWarning):
         self.message = message
@@ -210,7 +210,7 @@ def deprecated(specifier, message, cls=DeprecationWarning):
             return DeprecatedGetProperty(prop, message, cls)
 
 
-class deprecate(object):
+class deprecate:
     """Deprecation decorator"""
 
     def __init__(self, msg, cls=DeprecationWarning):
@@ -223,9 +223,9 @@ class deprecate(object):
 
 def moved(to_location, unsupported_in=None, cls=DeprecationWarning):
     old = sys._getframe(1).f_globals['__name__']
-    message = '%s has moved to %s.' % (old, to_location)
+    message = '{} has moved to {}.'.format(old, to_location)
     if unsupported_in:
-        message += " Import of %s will become unsupported in %s" % (
+        message += " Import of {} will become unsupported in {}".format(
             old, unsupported_in)
 
     warnings.warn(message, cls, 3)
