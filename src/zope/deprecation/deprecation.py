@@ -22,10 +22,7 @@ import types
 import warnings
 
 
-str_and_sequence_types = (
-    str
-    if str is not bytes
-    else basestring, list, tuple)  # noqa: F821 undefined name 'basestring'
+str_and_sequence_types = (str, list, tuple)
 
 
 class ShowSwitch:
