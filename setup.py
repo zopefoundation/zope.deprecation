@@ -67,7 +67,6 @@ setup(
     ],
     include_package_data=True,
     zip_safe=False,
-    test_suite='zope.deprecation',
     extras_require={
         'docs': ['Sphinx'],
         'test': [

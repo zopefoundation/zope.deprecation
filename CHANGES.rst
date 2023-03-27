@@ -5,9 +5,9 @@
 5.0 (unreleased)
 ================
 
-- Drop support for Python 2.7, 3.5, 3.6.
+- Drop support for Python 2.7, 3.4, 3.5, 3.6.
 
-- Drop support for Python 3.4.
+- Drop support for deprecated ``python setup.py test``.
 
 - Add support for Python 3.8, 3.9, 3.10, 3.11.
 
