@@ -32,7 +32,7 @@ def read(*rnames):
 
 setup(
     name='zope.deprecation',
-    version='5.0.dev0',
+    version='5.0',
     url='https://github.com/zopefoundation/zope.deprecation',
     license='ZPL 2.1',
     description='Zope Deprecation Infrastructure',
