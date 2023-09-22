@@ -2,7 +2,7 @@
 # https://github.com/zopefoundation/meta/tree/master/config/pure-python
 [meta]
 template = "pure-python"
-commit-id = "d03ad585"
+commit-id = "b21fbbf2"
 
 [python]
 with-macos = false
@@ -27,5 +27,6 @@ additional-config = [
 
 [manifest]
 additional-rules = [
+    "include *.yaml",
     "recursive-include docs *.bat",
     ]
