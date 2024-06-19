@@ -1,7 +1,0 @@
-.coverage
-*.egg-info
-__pycache__
-.tox
-nosetests.xml
-coverage.xml
-_build
