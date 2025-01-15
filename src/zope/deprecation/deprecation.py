@@ -220,7 +220,7 @@ class deprecate:
 
 def moved(to_location, unsupported_in=None, cls=DeprecationWarning):
     old = sys._getframe(1).f_globals['__name__']
-    message = '{} has moved to {}.'.format(old, to_location)
+    message = f'{old} has moved to {to_location}.'
     if unsupported_in:
         message += " Import of {} will become unsupported in {}".format(
             old, unsupported_in)
