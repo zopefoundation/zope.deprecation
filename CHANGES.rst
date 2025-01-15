@@ -2,6 +2,12 @@
  ``zope.deprecation`` Changelog
 ================================
 
+5.2 (unreleased)
+================
+
+- Nothing changed yet.
+
+
 5.1 (2025-01-15)
 ================
 
