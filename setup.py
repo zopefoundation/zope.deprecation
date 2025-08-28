@@ -34,10 +34,10 @@ setup(
     name='zope.deprecation',
     version='6.0.dev0',
     url='https://github.com/zopefoundation/zope.deprecation',
-    license='ZPL 2.1',
+    license='ZPL-2.1',
     description='Zope Deprecation Infrastructure',
-    author='Zope Corporation and Contributors',
-    author_email='zope-dev@zope.org',
+    author='Zope Foundation and Contributors',
+    author_email='zope-dev@zope.dev',
     long_description=(
         read('README.rst')
         + '\n\n' +
