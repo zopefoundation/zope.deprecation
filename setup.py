@@ -21,7 +21,6 @@
 
 import os
 
-from setuptools import find_packages
 from setuptools import setup
 
 
@@ -58,9 +57,6 @@ setup(
         "Programming Language :: Python :: Implementation :: PyPy",
         "Framework :: Zope :: 3",
     ],
-    package_dir={'': 'src'},
-    packages=find_packages('src'),
-    namespace_packages=['zope', ],
     python_requires='>= 3.9',
     install_requires=[
         'setuptools',
@@ -70,7 +66,7 @@ setup(
     extras_require={
         'docs': ['Sphinx'],
         'test': [
-            'zope.testrunner',
+            'zope.testrunner >= 6.4',
         ],
     },
 )
