@@ -21,7 +21,6 @@
 
 import os
 
-from setuptools import find_packages
 from setuptools import setup
 
 
@@ -32,12 +31,12 @@ def read(*rnames):
 
 setup(
     name='zope.deprecation',
-    version='5.2.dev0',
+    version='6.0.dev0',
     url='https://github.com/zopefoundation/zope.deprecation',
-    license='ZPL 2.1',
+    license='ZPL-2.1',
     description='Zope Deprecation Infrastructure',
-    author='Zope Corporation and Contributors',
-    author_email='zope-dev@zope.org',
+    author='Zope Foundation and Contributors',
+    author_email='zope-dev@zope.dev',
     long_description=(
         read('README.rst')
         + '\n\n' +
@@ -58,9 +57,6 @@ setup(
         "Programming Language :: Python :: Implementation :: PyPy",
         "Framework :: Zope :: 3",
     ],
-    package_dir={'': 'src'},
-    packages=find_packages('src'),
-    namespace_packages=['zope', ],
     python_requires='>= 3.9',
     install_requires=[
         'setuptools',
@@ -70,7 +66,7 @@ setup(
     extras_require={
         'docs': ['Sphinx'],
         'test': [
-            'zope.testrunner',
+            'zope.testrunner >= 6.4',
         ],
     },
 )

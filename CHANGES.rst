@@ -2,10 +2,10 @@
  ``zope.deprecation`` Changelog
 ================================
 
-5.2 (unreleased)
+6.0 (unreleased)
 ================
 
-- Nothing changed yet.
+- Replace ``pkg_resources`` namespace with PEP 420 native namespace.
 
 
 5.1 (2025-01-15)
