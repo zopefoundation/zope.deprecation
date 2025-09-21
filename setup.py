@@ -58,9 +58,6 @@ setup(
         "Framework :: Zope :: 3",
     ],
     python_requires='>= 3.9',
-    install_requires=[
-        'setuptools',
-    ],
     include_package_data=True,
     zip_safe=False,
     extras_require={
