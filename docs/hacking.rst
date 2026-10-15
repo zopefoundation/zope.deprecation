@@ -111,11 +111,11 @@ you can see how well the tests cover the code:
    ....................................................
    Name                           Stmts   Miss  Cover   Missing
    ------------------------------------------------------------
-   zope.deprecation                   7      0   100%   
-   zope.deprecation.deprecation     127      0   100%   
-   zope.deprecation.fixture           1      0   100%   
+   zope.deprecation                   7      0   100%
+   zope.deprecation.deprecation     127      0   100%
+   zope.deprecation.fixture           1      0   100%
    ------------------------------------------------------------
-   TOTAL                            135      0   100%   
+   TOTAL                            135      0   100%
    ----------------------------------------------------------------------
    Ran 52 tests in 0.155s
 
@@ -200,7 +200,7 @@ tool designed to run tests against multiple Python versions.  It creates
 a ``virtualenv`` for each configured version, installs the current package
 and configured dependencies into each ``virtualenv``, and then runs the
 configured commands.
-   
+
 :mod:`zope.deprecation` configures the following :mod:`tox` environments via
 its ``tox.ini`` file:
 
