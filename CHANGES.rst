@@ -2,7 +2,7 @@
  ``zope.deprecation`` Changelog
 ================================
 
-6.1 (unreleased)
+6.1 (2026-11-23)
 ================
 
 - Move package metadata from setup.py to pyproject.toml.
